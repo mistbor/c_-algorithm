@@ -22,6 +22,18 @@ void test22();
 void test23();
 void test24();
 void test25();
+void test26();
+void test27();
+void test28();
+void test29();
+int fun29_1();
+int fun29_2();
+void test30();
+void test32();
+void test33();
+void test35();
+void test36();
+void test37();
 
 int main() {
 	// test05();
@@ -41,7 +53,213 @@ int main() {
 	// test22();
 	// test23();
 	// test24();
-	test25();
+	// test25();
+	// test26();
+	// test27();
+	// test28();
+	// test29();
+	// test30();
+	// test32();
+	// test33();
+	// test35();
+	// test36();
+	test37();
+}
+
+void test37() {
+	// 对10个数进行排序。
+	int arr[] = {2, 1, 4, 5, 6, 2, 9, 0, 1, 12};
+	int len = sizeof(arr) / sizeof(int);
+	int temp = 0;
+	for (int i = 0; i < len; ++i)
+	{
+		for (int j = i + 1; j < len; ++j)
+		{
+			if (arr[i] > arr[j])
+			{
+				temp = arr[j];
+				arr[j] = arr[i];
+				arr[i] = temp;
+			}
+		}
+	}
+	for (int i = 0; i < len; ++i)
+	{
+		printf("%d ", arr[i]);
+	}
+}
+
+void test36() {
+	// 求100之内的素数
+	int count = 100;
+	for (int i = 1; i < count; ++i)
+	{
+		int temp = i - 1;
+		while(temp > 1) {
+			if (i % temp == 0)
+				break;
+			temp--;
+		}
+		if (temp == 1)
+		{
+			printf("%d是质数\n", i);
+		}
+	}
+}
+
+void test35() {
+	// 字符串反转，如将字符串 "www.runoob.com" 反转为 "moc.boonur.www"。
+	char string[] = "www.runoob.com";
+	int i = 0, j = sizeof(string) / sizeof(char) - 2;
+	// printf("j = %d\n", j);
+	char result[j + 2];
+	for (; j >= 0; j--, i++)
+	{
+		result[i] = string[j];
+		// printf("%d: %c\n", i, result[i]);
+	}
+	result[i] = '\0';
+	printf("%s\n", result);
+}
+
+void test33() {
+	// 判断一个数字是否为质数。
+	int num = 7;
+	int i = num - 1;
+	while(i > 1) {
+		if (num % i == 0)
+		{
+			printf("%d不是质数\n", num);
+			break;
+		}
+		i--;
+	}
+	if (i == 1)
+	{
+		printf("%d是质数", num);
+	}
+}
+
+void test32() {
+	// 删除一个字符串中的指定字母，如：字符串 "aca"，删除其中的 a 字母。
+	char string[] = "11111011";
+	char c = '0';
+	
+	int i, j;
+	for ( i = j = 0; string[i] != '\0'; ++i)
+	{
+		if (string[i] != c)
+		{
+			string[j++] = string[i];
+		}
+	}
+	string[j] = '\0';
+
+	printf("%s\n", string);
+}
+
+void test30() {
+	// 一个5位数，判断它是不是回文数。即12321是回文数，个位与万位相同，十位与千位相同。
+	int num = 123454321;
+
+	int reverseNum = 0;
+	int remainder = 0;
+
+	int temp = num;
+	while(temp > 0) {
+		remainder = temp % 10;
+		reverseNum *= 10;
+		reverseNum += remainder;
+		temp = (temp - remainder) / 10;
+	}
+
+	printf("reverseNum = %d\n", reverseNum);
+	if (num == reverseNum)
+	{
+		printf("%d是回文数\n", num);
+	}
+
+}
+
+
+int fun29_1(int i) {
+	int remainder = 0;
+	if (i != 0)
+	{
+		remainder = i % 10;
+		printf("%d", remainder);
+		i = fun29_1((i - remainder)/10);
+	}
+	return remainder;
+}
+
+int fun29_2(int i) {
+	int count = 0;
+	int remainder = 0;
+
+	while(i > 0) {
+		remainder = i % 10;
+	 	i -= remainder;
+	 	i /= 10;
+	 	count++;
+	}
+	return count;
+}
+
+
+void test29() {
+	// 给一个不多于5位的正整数，要求：一、求它是几位数，二、逆序打印出各位数字。
+	int num = 12340005;
+	fun29_1(num);
+	printf("\n");
+	printf("%d有%d位\n", num, fun29_2(num));
+}
+
+int fun28(int i) {
+	int age;
+	if (i == 1)
+	{
+		age = 10;
+	} else{
+		age = fun28(i - 1) + 2;
+	}
+	return age;
+}
+
+void test28() {
+	// 有5个人坐在一起，问第五个人多少岁？他说比第4个人大2岁。问第4个人岁数，他说比第3个人大2岁。
+	// 问第三个人，又说比第2人大两岁。问第2个人，说比第一个人大两岁。最后问第一个人，他说是10岁。
+	// 请问第五个人多大？
+	int count = 6;
+	for (int i = 1; i < count; ++i)
+	{
+		printf("第%d个人%d岁\n", i, fun28(i));
+	}
+
+}
+
+void test27() {
+	// 利用递归函数调用方式，将所输入的5个字符，以相反顺序打印出来。
+}
+
+int fun26(int i) {
+	int sum;
+	if (i == 0)
+	{
+		sum = 1;
+	} else{
+		sum = i * fun26(i - 1);
+	}
+	return sum;
+}
+
+void test26() {
+	// 利用递归方法求5!。
+	int count = 6;
+	for (int i = 0; i < count; ++i)
+	{
+		printf("%d! = %d\n", i, fun26(i));
+	}
 }
 
 void test25() {
